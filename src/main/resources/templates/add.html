@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <title th:text="#{button.add}">コスメを追加</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<div class="container">
+<h1 th:text="#{button.add}">コスメを追加</h1>
+<form th:action="@{/cosmetics}" th:object="${cosmetic}" method="post">
+    <label for="name">名前:</label> <input type="text" id="name" th:field="*{name}" required />
+    <span class="error-message"></span><br/>
+    <label for="brand">ブランド:</label> <input type="text" id="brand" th:field="*{brand}" required />
+    <span class="error-message"></span><br/>
+    <label for="level">レベル:</label> <input type="number" id="level" th:field="*{level}" min="1" max="5" required />
+    <span class="error-message"></span><br/>
+    <label for="price">価格:</label> <input type="number" id="price" th:field="*{price}" min="0" required />
+    <span class="error-message"></span><br/>
+    <label for="purchaseDate">購入日:</label> <input type="date" id="purchaseDate" th:field="*{purchaseDate}" />
+    <span class="error-message"></span><br/>
+    <button type="submit">追加</button>
+</form>
+<a href="/cosmetics">一覧に戻る</a>
+</div>
+</body>
+</html>

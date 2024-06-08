@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <title>コスメ一覧</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>コスメ一覧</h1>
+    <form action="#" th:action="@{/cosmetics}" method="get">
+        <input type="text" name="keyword" placeholder="名前またはブランドで検索" th:value="${keyword}">
+        <button type="submit">検索</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th><a th:href="@{/cosmetics(sortField='name', sortDirection=${sortDirection == 'asc' ? 'desc' : 'asc'})}">名前</a></th>
+            <th><a th:href="@{/cosmetics(sortField='brand', sortDirection=${sortDirection == 'asc' ? 'desc' : 'asc'})}">ブランド</a></th>
+            <th>レベル</th>
+            <th>価格</th>
+            <th>購入日</th>
+            <th>アクション</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cosmetic : ${cosmeticPage.content}">
+            <td th:text="${cosmetic.name}">名前</td>
+            <td th:text="${cosmetic.brand}">ブランド</td>
+            <td th:text="${cosmetic.level}">レベル</td>
+            <td th:text="${cosmetic.price}">価格</td>
+            <td th:text="${cosmetic.purchaseDate}">購入日</td>
+            <td>
+                <a th:href="@{/cosmetics/edit/{id}(id=${cosmetic.id})}">編集</a>
+                <a th:href="@{/cosmetics/delete/{id}(id=${cosmetic.id})}" class="delete">削除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagination">
+        <a th:if="${currentPage > 0}" th:href="@{/cosmetics(page=${currentPage - 1}, size=${size}, sortField=${sortField}, sortDirection=${sortDirection}, keyword=${keyword})}">前へ</a>
+        <span>ページ <span th:text="${currentPage + 1}">1</span> / <span th:text="${cosmeticPage.totalPages}">1</span></span>
+        <a th:if="${currentPage < cosmeticPage.totalPages - 1}" th:href="@{/cosmetics(page=${currentPage + 1}, size=${size}, sortField=${sortField}, sortDirection=${sortDirection}, keyword=${keyword})}">次へ</a>
+    </div>
+    <a href="/" class="btn">ホームに戻る</a>
+</div>
+</body>
+</html>

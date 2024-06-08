@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{welcome.message}">はくさんのコスメ管理システムへようこそ</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Sans+SC&display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<div class="container home">
+<h1 th:text="#{welcome.message}">はくさんのコスメ管理システムへようこそ</h1>
+<div class="button-container">
+    <button class="btn primary" onclick="window.location.href='/cosmetics'" th:text="#{button.query}">コスメを検索</button>
+    <button class="btn secondary" onclick="window.location.href='/cosmetics/add'" th:text="#{button.add}">コスメを追加</button>
+</div>
+
+    <div class="language-switch">
+        <a href="?lang=ja">日本語</a> | <a href="?lang=zh">中文（未实装）</a>
+    </div>
+
+<div class="description">
+    <p th:text="#{welcome.mess}">コレクションを追跡し、新しいアイテムを追加して、すべてを整理整頓しましょう。</p>
+</div>
+</div>
+</body>
+</html>
